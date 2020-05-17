@@ -1,6 +1,6 @@
 package org.example;
 
-public class Product {
+public abstract class Product {
     public static int counter=0;
     private int productId;
     private String productName;
@@ -20,6 +20,7 @@ public class Product {
 
 
     public int getProductId() {
+
         return productId;
     }
 
@@ -44,7 +45,17 @@ public class Product {
 
 
         return prizeinfo;
-    }*/
+        }*/
 
-   //String use();
-}
+    @Override
+    public String toString() {
+        return
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", prize=" + prize ;
+    }
+
+   public abstract String use();
+   public abstract String examine();
+
+        }

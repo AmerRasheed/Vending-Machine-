@@ -1,5 +1,5 @@
 package org.example;
-
+/*
 public class Food extends Product {
     private int calories;
 
@@ -15,4 +15,16 @@ public class Food extends Product {
     public void setCalories(int calories) {
         this.calories = calories;
     }
+
+    @Override
+    public String use(){
+        return "Consume";
+    }
+
+    @Override
+    public String examine() {
+        return null;
+    }
+
 }
+*/

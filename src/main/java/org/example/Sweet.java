@@ -15,4 +15,22 @@ public class Sweet extends Product {
     public void setCalories(int calories) {
         this.calories = calories;
     }
+    @Override
+    public String use(){
+        System.out.println("Enjoyed");
+        return "Consume";
+    }
+
+    @Override
+    public String examine() {
+        return this.toString();
+    }
+
+    @Override
+    public String toString() {
+        return "Fruit{" + super.toString()+
+                "calories=" + calories +
+                '}';
+    }
+
 }

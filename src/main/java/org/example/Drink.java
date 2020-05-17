@@ -25,4 +25,22 @@ public class Drink extends Product {
     public void setSize(int size) {
         this.size = size;
     }
+
+    @Override
+    public String use(){
+        System.out.println("Drunk");
+        return "Consume";
+    }
+
+    @Override
+    public String examine() {
+        return null;
+    }
+    @Override
+    public String toString() {
+        return "Fruit{" + super.toString()+
+                "calories=" + calories +
+                '}';
+    }
+
 }
