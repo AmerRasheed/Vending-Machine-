@@ -1,20 +1,18 @@
 package org.example;
 
 public class Sweet extends Product {
-    private int calories;
+
 
     public Sweet(int productId, String productName, int prize, int calories) {
-        super(productId, productName, prize);
-        this.calories = calories;
+        super(productId, productName, prize,calories);
+       // super.calories = calories;
     }
 
-    public int getCalories() {
-        return calories;
-    }
+    //public int getCalories() {        return calories;}
 
-    public void setCalories(int calories) {
-        this.calories = calories;
-    }
+
+   // public void setCalories(int calories) {        this.calories = calories;}
+
     @Override
     public String use(){
         System.out.println("Enjoyed");
@@ -29,7 +27,7 @@ public class Sweet extends Product {
     @Override
     public String toString() {
         return "Fruit{" + super.toString()+
-                "calories=" + calories +
+                //"calories=" + calories +
                 '}';
     }
 

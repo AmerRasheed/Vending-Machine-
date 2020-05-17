@@ -5,23 +5,30 @@ public abstract class Product {
     private int productId;
     private String productName;
     private int prize;
-
+    private int calories;
 
     // Constructor
 
-    public Product(int productId, String productName, int prize) {
+    public Product(int productId, String productName, int prize,int calories) {
         this.productId = ++counter;
         setProductName(productName);
         setPrize(prize);
+        this.calories=calories;
     }
-
-
-    //Getters Setters
-
 
     public int getProductId() {
 
         return productId;
+    }
+
+//Getters Setters
+
+    public int getCalories() {
+        return calories;
+    }
+
+    public void setCalories(int calories) {
+        this.calories = calories;
     }
 
     public String getProductName() {
@@ -40,13 +47,6 @@ public abstract class Product {
         this.prize = prize;
     }
 
-   /* public static String examin(){
-        String prizeinfo;
-
-
-        return prizeinfo;
-        }*/
-
     @Override
     public String toString() {
         return
@@ -58,4 +58,4 @@ public abstract class Product {
    public abstract String use();
    public abstract String examine();
 
-        }
+}

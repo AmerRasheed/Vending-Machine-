@@ -1,44 +1,53 @@
 package org.example.model;
 
-import org.example.Denominations;
-import org.example.Items;
-import org.example.Product;
-import org.example.ScannerCallingClass;
+import org.example.*;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class VendingMachineImplements implements VendingMachine {
+    //Items itemint = new Items();
+    private static Product[] items = new Product[0];
     int pool = 0;
-// Array of product
-    //items coming from APP. addproduc should be stored in this array PRODUCT
-    //deposit pool 5+ 1000 +500
+
+    public int size() {
+        return items.length;
+    }
+
+    public Product[] findAll() {
+        return items;
+    }
+
+    public Product addfruitProduct(String ProductName, int itemPrize, int calories) {
+        Fruit item = new Fruit(1,ProductName,itemPrize,calories);
+        items = Arrays.copyOf(items, items.length + 1);
+        items[items.length - 1] = item;
+        return item;
+    }
+    public Product adddrinkProduct(String ProductName, int itemPrize,int calories,int size) {
+        Drink item = new Drink(1,ProductName,itemPrize,calories,330);
+        items = Arrays.copyOf(items, items.length + 1);
+        items[items.length - 1] = item;
+        return item;
+    }
+    public Product addsweetProduct(String ProductName, int itemPrize, int calories) {
+        Sweet item = new Sweet(1,ProductName,itemPrize,calories);
+        items = Arrays.copyOf(items, items.length + 1);
+        items[items.length - 1] = item;
+        return item;
+    }
+
     @Override
     public void addCurrency(int amount) {
-
         pool = pool + amount;
-        System.out.println("The credit amount is" + pool);
+        System.out.println("The credit amount in the pool is " + pool);
+        System.out.println("\n");
     }
-/*
-* public static int getDenInput(Denominations...denominations) {
-        int sum = 0;
-        for (Denominations den : denominations) {
-            sum = sum + den.getDenInput();
-
-        }
-        * */
-/*
-if (balance < 0)
-                    System.out.println("Insufficient balance");
-                else {
-                    System.out.println("The item no. you selected is " + arrInt[i].getProductId() + " item Name is " + arrInt[i].getProductName());
-                    return arrInt[i];
-                }
-*/
 
     @Override
     public Product request(int productId) {
-        Items itemint = new Items();
-        Product[] arrInt = itemint.findAll();
+       // Items itemint = new Items();
+        Product[] arrInt = findAll();
         for (int i = 0; i < arrInt.length; i++)
             if (productId == arrInt[i].getProductId()) {
                 System.out.println("The item no. you selected is " + arrInt[i].getProductId() + " item Name is " + arrInt[i].getProductName());
@@ -49,30 +58,17 @@ if (balance < 0)
                 System.out.println("Availabe balance is " + pool);
                 return arrInt[i];
             }
-        //   System.out.print(arrInt[i].getProductId());
-        // System.out.print(arrInt[i].getProductName());
-        //System.out.println(arrInt[i].getPrize());
-        //
-        callmenu();
-        //pool-item prize
-        //display pool balance
+            callmenu();
         return null;
     }
 
     @Override
-    public void callmenu() {
-        System.out.println("We are offering following products TODAY     ");
-        System.out.println("Item No.     Product Name         Item Prize ");
-        /*System.out.println("Pepsi ..............................8 SEK");
-        System.out.println("Banana .............................8 SEK");
-        System.out.println("Egg Sandwitch.......................8 SEK");
-        System.out.println("Kit Kat.............................8 SEK");*/
-
-    }
+    public void callmenu() { }
 
     @Override
     public int endSession() {
         System.out.println("Your balance is " + pool);
+        System.out.println("You will be returned you money back (Change) in the following multiples");
         int change = pool;
 
         int Thousands = change / 1000;
@@ -86,7 +82,7 @@ if (balance < 0)
         change = change % 200;
 
         int Hundreds = change / 100;
-        // change %= 100;
+
         change = change % 100;
 
         int Fiftys = change / 50;
@@ -99,7 +95,7 @@ if (balance < 0)
         change = change % 10;
 
         int Fives = change / 5;
-        // change %= 100;
+
         change = change % 5;
 
         int Twos = change / 2;
@@ -108,14 +104,23 @@ if (balance < 0)
         int Ores = change;
         change = change % 1;
 
-        System.out.print("Thousands " + Thousands + "\nFiveHundreds " + FiveHundreds + "\nTwoHundreds " +
-                TwoHundreds + "\nHundreds " + Hundreds + "\nFifties " + Fiftys + "\nTwenties" + Twenties + "\nTen s" + Tens +
-                "\nFives " + Fives + "\nTwos " + Twos + "\nOres " + Ores + "\n");
+        System.out.print("Thousands    " + Thousands + "\nFiveHundreds " + FiveHundreds + "\nTwoHundreds  " +
+                TwoHundreds + "\nHundreds     " + Hundreds + "\nFifties      " + Fiftys + "\nTwenties     " + Twenties + "\nTens         " + Tens +
+                "\nFives        " + Fives + "\nTwos         " + Twos + "\nOres         " + Ores + "\n");
         return 0;
     }
 
     @Override
     public String getDescription(int productNumber) {
+        VendingMachineImplements itemint = new VendingMachineImplements();
+        Product[] arrInt = itemint.findAll();
+        for (int i = 0; i < arrInt.length; i++)
+            if (productNumber == arrInt[i].getProductId()) {
+                System.out.print(
+                        "The item no. you selected is                   " + arrInt[i].getProductId() +
+                                "\n item Name is                    " + arrInt[i].getProductName()+
+                                "\nItem description                               "+arrInt[i].getCalories()+"\n");
+            }
         return this.toString();
     }
 
